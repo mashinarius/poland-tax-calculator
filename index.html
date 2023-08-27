@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poland Tax Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="container mt-5">
+    <h2 class="text-center mb-4">Enter Monthly Salaries</h2>
+    <form id="salaryForm">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Month</th>
+                <th>Salary (Brutto)</th>
+                <th>Składka emerytalna <br>Brutto 9.76%</th>
+                <th>Składka rentowa <br>Brutto 1.5%</th>
+                <th>Składka chorobowa <br>Brutto 2.45%</th>
+                <th>Składka na ubezpieczenie zdrowotne <br>Brutto - (SE + SR + SC) 9%</th>
+                <th>Tax</th>
+            </tr>
+            </thead>
+            <!-- All Months -->
+            <tbody>
+
+            <tr>
+                <td>January</td>
+                <td><input type="number" id="janSalary" required></td>
+                <td><span id="janPension">0</span></td>
+                <td><span id="janRent">0</span></td>
+                <td><span id="janSickness">0</span></td>
+                <td><span id="janZdrowotne">0</span></td>
+                <td><span id="janTax">0</span></td>
+            </tr>
+            <!-- ... similar rows for other months ... -->
+            <tr>
+                <td>February</td>
+                <td><input type="number" id="febSalary" required></td>
+                <td><span id="febPension">0</span></td>
+                <td><span id="febRent">0</span></td>
+                <td><span id="febSickness">0</span></td>
+                <td><span id="febTax">0</span></td>
+            </tr>
+            <tr>
+                <td>March</td>
+                <td><input type="number" id="marSalary" required></td>
+                <td><span id="marPension">0</span></td>
+                <td><span id="marRent">0</span></td>
+                <td><span id="marSickness">0</span></td>
+                <td><span id="marTax">0</span></td>
+            </tr>
+            <tr>
+                <td>April</td>
+                <td><input type="number" id="aprSalary" required></td>
+                <td><span id="aprPension">0</span></td>
+                <td><span id="aprRent">0</span></td>
+                <td><span id="aprSickness">0</span></td>
+                <td><span id="aprTax">0</span></td>
+            </tr>
+            <tr>
+                <td>May</td>
+                <td><input type="number" id="maySalary" required></td>
+                <td><span id="mayPension">0</span></td>
+                <td><span id="mayRent">0</span></td>
+                <td><span id="maySickness">0</span></td>
+                <td><span id="mayTax">0</span></td>
+            </tr>
+            <tr>
+                <td>June</td>
+                <td><input type="number" id="junSalary" required></td>
+                <td><span id="junPension">0</span></td>
+                <td><span id="junRent">0</span></td>
+                <td><span id="junSickness">0</span></td>
+                <td><span id="junTax">0</span></td>
+            </tr>
+            <tr>
+                <td>July</td>
+                <td><input type="number" id="julSalary" required></td>
+                <td><span id="julPension">0</span></td>
+                <td><span id="julRent">0</span></td>
+                <td><span id="julSickness">0</span></td>
+                <td><span id="julTax">0</span></td>
+            </tr>
+            <tr>
+                <td>August</td>
+                <td><input type="number" id="augSalary" required></td>
+                <td><span id="augPension">0</span></td>
+                <td><span id="augRent">0</span></td>
+                <td><span id="augSickness">0</span></td>
+                <td><span id="augTax">0</span></td>
+            </tr>
+            <tr>
+                <td>September</td>
+                <td><input type="number" id="sepSalary" required></td>
+                <td><span id="sepPension">0</span></td>
+                <td><span id="sepRent">0</span></td>
+                <td><span id="sepSickness">0</span></td>
+                <td><span id="sepTax">0</span></td>
+            </tr>
+            <tr>
+                <td>October</td>
+                <td><input type="number" id="octSalary" required></td>
+                <td><span id="octPension">0</span></td>
+                <td><span id="octRent">0</span></td>
+                <td><span id="octSickness">0</span></td>
+                <td><span id="octTax">0</span></td>
+            </tr>
+            <tr>
+                <td>November</td>
+                <td><input type="number" id="novSalary" required></td>
+                <td><span id="novPension">0</span></td>
+                <td><span id="novRent">0</span></td>
+                <td><span id="novSickness">0</span></td>
+                <td><span id="novTax">0</span></td>
+            </tr>
+            <tr>
+                <td>December</td>
+                <td><input type="number" id="decSalary" required></td>
+                <td><span id="decPension">0</span></td>
+                <td><span id="decRent">0</span></td>
+                <td><span id="decSickness">0</span></td>
+                <td><span id="decTax">0</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <script>
+        const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+        function getTaxRate(cumulativeTax) {
+            return cumulativeTax > 120000 ? 0.32 : 0.12;
+        }
+
+        function calculateForMonth(month, cumulativeTax = 0, cumulativePension = 0, cumulativeRent = 0) {
+            const salaryInput = document.getElementById(`${month}Salary`);
+            
+            const pensionDisplay = document.getElementById(`${month}Pension`);
+            const rentDisplay = document.getElementById(`${month}Rent`);
+            const sicknessDisplay = document.getElementById(`${month}Sickness`);
+            const zdrowotneDisplay = document.getElementById(`${month}Zdrowotne`);
+
+            const taxDisplay = document.getElementById(`${month}Tax`);
+
+
+            if (salaryInput && taxDisplay && pensionDisplay && rentDisplay && sicknessDisplay) {
+                const salary = Number(salaryInput.value);
+                const pension = salary * 0.0976;
+                cumulativePension += pension;
+
+                if (cumulativePension > 20305,65) {
+                    pansion = cumulativePension - 20305,65
+                }
+                const rent = salary * 0.015;
+                const sickness = salary * 0.0245;
+                const taxBase = salary - pension - rent - sickness;
+                const taxRate = getTaxRate(cumulativeTax);
+                const tax = taxBase * taxRate;
+                const zdrowotne = (salary - pension - rent - sickness) * 0.09;
+
+                
+                pensionDisplay.textContent = pension.toFixed(2);
+                rentDisplay.textContent = rent.toFixed(2);
+                sicknessDisplay.textContent = sickness.toFixed(2);
+                zdrowotneDisplay.textContent = zdrowotne.toFixed(2);
+
+                taxDisplay.textContent = tax.toFixed(2);
+            }
+
+            return cumulativeTax + (Number(taxDisplay.textContent) || 0), cumulativePension, cumulativeRent;
+        }
+
+        function setupListeners() {
+            months.forEach((month, index) => {
+                const salaryInput = document.getElementById(`${month}Salary`);
+                if (salaryInput) {
+                    salaryInput.addEventListener('input', () => {
+                        let cumulativeTax = 0;
+                        let cumulativePension = 0;
+                        let cumulativeRent = 0;
+
+                        // Recalculate for all months to keep the tax rate consistent
+                        for (let i = 0; i <= index; i++) {
+                            cumulativeTax, cumulativePension, cumulativeRent = calculateForMonth(months[i], cumulativeTax);
+                        }
+                    });
+                }
+            });
+        }
+
+        setupListeners();
+    </script>
+</body>
+
+</html>
